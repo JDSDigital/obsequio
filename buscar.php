@@ -3,7 +3,7 @@
   	define('DB_HOST', '127.0.0.1');
   	define('DB_NAME', 'obsequio');
   	define('DB_USER', 'root');
-  	define('DB_PASSWORD', 'F0rb1dden');
+  	define('DB_PASSWORD', '');
 
     $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
@@ -17,23 +17,30 @@
     	$result = $mysqli->query($query);
     	$row = $result->fetch_assoc();
 
-    	do {
-    		$array = [
-            "nombre" => $row['nombre'],
-        		"apellido" => $row['apellido'],
-        		"cedula" => $row['cedula'],
-        		"genero" => $row['genero'],
-        		"dob" => $row['dob'],
-        		"tlf1" => $row['tlf1'],
-        		"tlf2" => $row['tlf2'],
-        		"mail" => $row['mail'],
-        		"empresa" => $row['empresa'],
-        		"subgrupo" => $row['subgrupo']
-    		];
+      if ($row['cedula'] === $cedula){
+        do {
+      		$array = [
+              "nombre" => $row['nombre'],
+          		"apellido" => $row['apellido'],
+          		"cedula" => $row['cedula'],
+          		"genero" => $row['genero'],
+          		"dob" => $row['dob'],
+          		"tlf1" => $row['tlf1'],
+          		"tlf2" => $row['tlf2'],
+          		"mail" => $row['mail'],
+          		"empresa" => $row['empresa'],
+          		"subgrupo" => $row['subgrupo']
+      		];
 
-    	} while ($row = $result->fetch_assoc());
+      	} while ($row = $result->fetch_assoc());
 
-      mysqli_close($mysqli);
-      return $array;
+        mysqli_close($mysqli);
+        return $array;
+
+      } else {
+        mysqli_close($mysqli);
+        return 0;
+      }
+
     }
 ?>

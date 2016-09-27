@@ -25,34 +25,41 @@
 			if (isset($_POST['cedula'])) {
 				include './buscar.php';
 				$show = buscar($_POST['cedula']);
-				?>
-				<table>
-					<tr id="table-head">
-						<td>Nombre</td>
-						<td>Apellido</td>
-						<td>Cédula</td>
-						<td>Género</td>
-						<td>Fecha de Nacimiento</td>
-						<td>Teléfono 1</td>
-						<td>Teléfono 2</td>
-						<td>Correo</td>
-						<td>Empresa</td>
-						<td>Subgrupo</td>
-					</tr>
-					<tr>
-						<td><?php echo $show['nombre']; ?></td>
-						<td><?php echo $show['apellido']; ?></td>
-						<td><?php echo $show['cedula']; ?></td>
-						<td><?php echo $show['genero']; ?></td>
-						<td><?php echo $show['dob']; ?></td>
-						<td><?php echo $show['tlf1']; ?></td>
-						<td><?php echo $show['tlf2']; ?></td>
-						<td><?php echo $show['mail']; ?></td>
-						<td><?php echo $show['empresa']; ?></td>
-						<td><?php echo $show['subgrupo']; ?></td>
-					</tr>
-				</table>
-				<?php
+
+				if ($show == 0) {
+
+					?><p>No se consiguieron resultados.</p><?php
+
+				} else {
+					?>
+					<table>
+						<tr id="table-head">
+							<td>Nombre</td>
+							<td>Apellido</td>
+							<td>Cédula</td>
+							<td>Género</td>
+							<td>Fecha de Nacimiento</td>
+							<td>Teléfono 1</td>
+							<td>Teléfono 2</td>
+							<td>Correo</td>
+							<td>Empresa</td>
+							<td>Subgrupo</td>
+						</tr>
+						<tr>
+							<td><?php echo $show['nombre']; ?></td>
+							<td><?php echo $show['apellido']; ?></td>
+							<td><?php echo $show['cedula']; ?></td>
+							<td><?php echo $show['genero']; ?></td>
+							<td><?php echo $show['dob']; ?></td>
+							<td><?php echo $show['tlf1']; ?></td>
+							<td><?php echo $show['tlf2']; ?></td>
+							<td><?php echo $show['mail']; ?></td>
+							<td><?php echo $show['empresa']; ?></td>
+							<td><?php echo $show['subgrupo']; ?></td>
+						</tr>
+					</table>
+					<?php
+				}
 			}
 		?>
 
