@@ -3,7 +3,7 @@
   	define('DB_HOST', '127.0.0.1');
   	define('DB_NAME', 'obsequio');
   	define('DB_USER', 'root');
-  	define('DB_PASSWORD', '');
+  	define('DB_PASSWORD', 'F0rb1dden');
 
     $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 

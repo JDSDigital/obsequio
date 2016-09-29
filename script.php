@@ -3,7 +3,7 @@
 	define('DB_HOST', '127.0.0.1');
 	define('DB_NAME', 'obsequio');
 	define('DB_USER', 'root');
-	define('DB_PASSWORD', '');
+	define('DB_PASSWORD', 'F0rb1dden');
 
 $db = "./sql.csv";
 
@@ -16,16 +16,24 @@ do {
 	$feed = explode(";", $line);
 
 	$list = [
-		"nombre" => $feed[0],
-		"apellido" => $feed[1],
-		"cedula" => $feed[2],
-		"genero" => $feed[3],
-		"dob" => $feed[4],
-		"tlf1" => $feed[5],
-		"tlf2" => $feed[6],
-		"mail" => $feed[7],
-		"empresa" => $feed[8],
-		"subgrupo" => $feed[9]
+		"titular" => $feed[0],
+		"beneficiario" => $feed[1],
+		"tipo" => $feed[2],
+		"nombre" => $feed[3],
+		"apellido" => $feed[4],
+		"genero" => $feed[5],
+		"dob" => $feed[6],
+		"edad" => $feed[7],
+		"parentesco" => $feed[8],
+		"tlf1" => $feed[9],
+		"tlf2" => $feed[10],
+		"mail" => $feed[11],
+		"desde" => $feed[12],
+		"hasta" => $feed[13],
+		"campana" => $feed[14],
+		"subgrupo" => $feed[15],
+		"empresa" => $feed[16],
+		"consultas" => $feed[17],
 	];
 
 		$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
@@ -34,7 +42,7 @@ do {
 			die("Connection failed: " . $mysqli->connect_error);
 		}
 
-		$query = "INSERT INTO asegurados (nombre, apellido, cedula, genero, dob, tlf1, tlf2, mail, empresa, subgrupo) VALUES ('";
+		$query = "INSERT INTO asegurados (titular, beneficiario, tipo, nombre, apellido, genero, dob, edad, parentesco, tlf1, tlf2, mail, desde, hasta, campana, subgrupo, empresa, consultas) VALUES ('";
 		$query .= implode("', '", $list) ."')";
 
 
