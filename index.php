@@ -23,7 +23,7 @@
 
 		<?php
 			if (isset($_POST['cedula'])) {
-				include './buscar.php';
+				include './functions.php';
 				$show = buscar($_POST['cedula']);
 
 				if ($show == 0) {
@@ -31,6 +31,8 @@
 					?><p>No se consiguieron resultados.</p><?php
 
 				} else {
+					$titular = $show['titular'];
+					$beneficiario = $show['beneficiario'];
 					?>
 					<table>
 						<tr id="table-head">
@@ -73,8 +75,8 @@
 								<button type="button" class="btn btn-danger" id="show-button" onclick=""><span class="glyphicon glyphicon-minus-sign"></span> Descontar llamada</button> -->
 								<div class="col-xs-2 col-xs-offset-5">
 									<form class="" action="./show.php" target="popup" method="post">
-										<input type="hidden" name="showMore" value="<?= $_POST['cedula']; ?>" />
-										<button type="button" class="btn btn-success" id="show-button"><span class="glyphicon glyphicon-plus-sign"></span> Mostrar más</button>
+										<input type="hidden" name="showMore" value="<?= $titular ?>" />
+										<button type="submit" class="btn btn-success" id="show-button"><span class="glyphicon glyphicon-plus-sign"></span> Mostrar más</button>
 									</form>
 								</div>
 
@@ -90,15 +92,16 @@
 								<button type="button" class="btn btn-danger" id="show-button" onclick=""><span class="glyphicon glyphicon-minus-sign"></span> Descontar llamada</button> -->
 								<div class="col-xs-2 col-xs-offset-4">
 									<form class="" action="./show.php" target="popup" method="post">
-										<input type="hidden" name="showMore" value="<?= $_POST['cedula']; ?>" />
-										<button type="button" class="btn btn-success" id="show-button"><span class="glyphicon glyphicon-plus-sign"></span> Mostrar más</button>
+										<input type="hidden" name="showMore" value="<?= $titular ?>" />
+										<button type="submit" class="btn btn-success" id="show-button"><span class="glyphicon glyphicon-plus-sign"></span> Mostrar más</button>
 									</form>
 								</div>
 
 								<div class="col-xs-2">
-									<form class="" action="./show.php" method="post">
-										<input type="hidden" name="showMore" value="<?= $_POST['cedula']; ?>" />
-										<button type="button" class="btn btn-danger" id="show-button"><span class="glyphicon glyphicon-minus-sign"></span> Descontar llamada</button>
+									<form class="" action="./index.php" method="post">
+										<input type="hidden" name="titular" value="<?= $titular ?>" />
+										<input type="hidden" name="beneficiario" value="<?= $beneficiario ?>" />
+										<button type="submit" class="btn btn-danger" id="show-button"><span class="glyphicon glyphicon-minus-sign"></span> Descontar llamada</button>
 									</form>
 								</div>
 
@@ -111,6 +114,14 @@
 					<?php
 				}
 			}
+
+			if (isset($_POST['titular']) && isset($_POST['beneficiario'])) {
+				include './functions.php';
+				$delete = restar($_POST['titular'], $_POST['beneficiario']);
+
+				?> <p> <?php echo $delete; ?> </p> <?php
+			}
+
 		?>
 
 	</div>
