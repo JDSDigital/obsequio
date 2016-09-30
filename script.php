@@ -3,7 +3,7 @@
 	define('DB_HOST', '127.0.0.1');
 	define('DB_NAME', 'obsequio');
 	define('DB_USER', 'root');
-	define('DB_PASSWORD', 'F0rb1dden');
+	define('DB_PASSWORD', '');
 
 $db = "./sql.csv";
 
@@ -13,6 +13,7 @@ $db = fopen("$db", "r");
 
 do {
 	$line = fgets($db);
+	//$line = utf8_decode($line);
 	$feed = explode(";", $line);
 
 	$list = [
@@ -46,10 +47,10 @@ do {
 		$query .= implode("', '", $list) ."')";
 
 
-		echo $query ."<br /><br />";
+		echo $query ."<br />";
 			$sql = mysqli_query($mysqli, $query);
 			if ($sql === TRUE) {
-				echo "Exito";
+				echo "Exito<br /><br />";
 			} else {
 				echo "Error: " . $sql . "<br>" . $mysqli->error;
 			}
@@ -58,6 +59,8 @@ do {
 
 
 } while (!feof($db));
+
+
 
 fclose ($db);
 

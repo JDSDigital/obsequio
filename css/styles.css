@@ -10,7 +10,7 @@
 
 .search {
   margin: 0 auto;
-  padding: 50px 100px 100px 100px;;
+  padding: 50px 100px 50px 100px;;
 }
 
 #search-input {
@@ -40,4 +40,12 @@
   text-align: center !important;
   font-weight: bold !important;
   font-size: 16px;
+}
+
+.action-buttons {
+  text-align: center;
+}
+
+.action-buttons button {
+  margin: 20px 50px 0px 50px;
 }

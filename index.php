@@ -15,7 +15,7 @@
 		<h1>Buscador</h1>
 		<form role="form" method="POST" action="index.php">
 		  <input name="cedula" type="text" class="form-control form-text" placeholder="Número de cédula" id="search-input" required>
-			<button type="submit" class="btn btn-success" id="search-button">Buscar</button>
+			<button type="submit" class="btn btn-success" id="search-button"><span class="glyphicon glyphicon-search"></span> Buscar</button>
 		</form>
 	</div>
 
@@ -34,30 +34,80 @@
 					?>
 					<table>
 						<tr id="table-head">
+							<td>Cédula</td>
+							<td>Tipo de beneficiario</td>
 							<td>Nombre</td>
 							<td>Apellido</td>
-							<td>Cédula</td>
-							<td>Género</td>
-							<td>Fecha de Nacimiento</td>
-							<td>Teléfono 1</td>
-							<td>Teléfono 2</td>
-							<td>Correo</td>
-							<td>Empresa</td>
+							<td>Edad</td>
+							<td>Teléfono</td>
+							<td>Vencimiento</td>
+							<td>Campaña</td>
 							<td>Subgrupo</td>
+							<td>Disponibles</td>
 						</tr>
 						<tr>
+							<td><?php echo $show['beneficiario']; ?></td>
+							<td><?php echo $show['tipo']; ?></td>
 							<td><?php echo $show['nombre']; ?></td>
 							<td><?php echo $show['apellido']; ?></td>
-							<td><?php echo $show['cedula']; ?></td>
-							<td><?php echo $show['genero']; ?></td>
-							<td><?php echo $show['dob']; ?></td>
+							<td><?php echo $show['edad']; ?></td>
 							<td><?php echo $show['tlf1']; ?></td>
-							<td><?php echo $show['tlf2']; ?></td>
-							<td><?php echo $show['mail']; ?></td>
-							<td><?php echo $show['empresa']; ?></td>
+							<td><?php echo $show['hasta']; ?></td>
+							<td><?php echo $show['campana']; ?></td>
 							<td><?php echo $show['subgrupo']; ?></td>
+							<?php
+								if ($show['consultas'] == 999) {
+									?><td>ILIMITADAS</td><?php
+								} else {
+									?><td><?php echo $show['consultas']; ?></td><?php
+								} ?>
 						</tr>
 					</table>
+
+					<?php
+
+						if ($show['consultas'] == 999) {
+							?>
+							<div class="action-buttons row">
+								<!-- <button type="button" class="btn btn-success" id="show-button" onclick="window.open('./show.php','name','width=400,height=300')"><span class="glyphicon glyphicon-plus-sign"></span> Mostrar más</button>
+								<button type="button" class="btn btn-danger" id="show-button" onclick=""><span class="glyphicon glyphicon-minus-sign"></span> Descontar llamada</button> -->
+								<div class="col-xs-2 col-xs-offset-5">
+									<form class="" action="./show.php" target="popup" method="post">
+										<input type="hidden" name="showMore" value="<?= $_POST['cedula']; ?>" />
+										<button type="button" class="btn btn-success" id="show-button"><span class="glyphicon glyphicon-plus-sign"></span> Mostrar más</button>
+									</form>
+								</div>
+
+							</div>
+
+							<?php
+
+						} else {
+
+							?>
+							<div class="action-buttons row">
+								<!-- <button type="button" class="btn btn-success" id="show-button" onclick="window.open('./show.php','name','width=400,height=300')"><span class="glyphicon glyphicon-plus-sign"></span> Mostrar más</button>
+								<button type="button" class="btn btn-danger" id="show-button" onclick=""><span class="glyphicon glyphicon-minus-sign"></span> Descontar llamada</button> -->
+								<div class="col-xs-2 col-xs-offset-4">
+									<form class="" action="./show.php" target="popup" method="post">
+										<input type="hidden" name="showMore" value="<?= $_POST['cedula']; ?>" />
+										<button type="button" class="btn btn-success" id="show-button"><span class="glyphicon glyphicon-plus-sign"></span> Mostrar más</button>
+									</form>
+								</div>
+
+								<div class="col-xs-2">
+									<form class="" action="./show.php" method="post">
+										<input type="hidden" name="showMore" value="<?= $_POST['cedula']; ?>" />
+										<button type="button" class="btn btn-danger" id="show-button"><span class="glyphicon glyphicon-minus-sign"></span> Descontar llamada</button>
+									</form>
+								</div>
+
+							</div>
+							<?php
+						}
+
+					 ?>
+
 					<?php
 				}
 			}
