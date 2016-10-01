@@ -34,6 +34,7 @@
 					$titular = $show['titular'];
 					$beneficiario = $show['beneficiario'];
 					?>
+
 					<table>
 						<tr id="table-head">
 							<td>Cédula</td>
@@ -75,7 +76,7 @@
 								<button type="button" class="btn btn-danger" id="show-button" onclick=""><span class="glyphicon glyphicon-minus-sign"></span> Descontar llamada</button> -->
 								<div class="col-xs-2 col-xs-offset-5">
 									<form class="" action="./show.php" target="popup" method="post">
-										<input type="hidden" name="showMore" value="<?= $titular ?>" />
+										<input type="hidden" name="showMore" value="<?php echo implode(',', $show); ?>" />
 										<button type="submit" class="btn btn-success" id="show-button"><span class="glyphicon glyphicon-plus-sign"></span> Mostrar más</button>
 									</form>
 								</div>
@@ -92,7 +93,7 @@
 								<button type="button" class="btn btn-danger" id="show-button" onclick=""><span class="glyphicon glyphicon-minus-sign"></span> Descontar llamada</button> -->
 								<div class="col-xs-2 col-xs-offset-4">
 									<form class="" action="./show.php" target="popup" method="post">
-										<input type="hidden" name="showMore" value="<?= $titular ?>" />
+										<input type="hidden" name="showMore" value="<?php echo implode(',', $show); ?>" />
 										<button type="submit" class="btn btn-success" id="show-button"><span class="glyphicon glyphicon-plus-sign"></span> Mostrar más</button>
 									</form>
 								</div>
